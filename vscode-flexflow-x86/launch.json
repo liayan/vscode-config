@@ -1,0 +1,37 @@
+{
+        "configurations": [
+        {
+            "name": "CUDA C++: Launch",
+            "type": "cuda-gdb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/examples/cpp/AlexNet/alexnet",
+            //"args": "-ll:cpu 1 -ll:gpu 1 -ll:fsize 2000 -ll:zsize 2000",
+            "args": "-ll:gpu 2 -ll:cpu 2 -ll:fsize 6000 -ll:zsize 6000 -ll:util 1 --batch-size 32 --search-budget 1000 --export test.txt"]
+        },
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/examples/cpp/AlexNet/alexnet",
+            "args": ["-ll:gpu", "4",  "-ll:cpu", "4", "-ll:fsize", "6000", "-ll:zsize", "6000", "-ll:util", "1","--batch-size", "32", "--search-budget", "100", "--export", "test.txt"]
+            //"args": ["-ll:cpu", "1", "-ll:gpu", "1", "-ll:fsize", "2000", "-ll:zsize", "2000"],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+        ]
+    }
