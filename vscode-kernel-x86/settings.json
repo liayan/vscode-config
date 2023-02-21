@@ -1,0 +1,14 @@
+{
+        "makefile.extensionOutputFolder": "./.vscode",
+        "esbonio.sphinx.confDir": "",
+        "files.exclude": {
+            "**/.*.*.cmd": true,
+            "**/.*.d": true,
+            "**/.*.S": true
+        },
+        "[c]": {
+            "editor.detectIndentation": false,
+            "editor.tabSize": 8,
+            "editor.insertSpaces": false
+        }
+}

@@ -1,0 +1,116 @@
+{
+        // Use IntelliSense to learn about possible attributes.
+        // Hover to view descriptions of existing attributes.
+        // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+        "version": "0.2.0",
+        "configurations": [
+          {
+            "type": "gdb",
+            "request": "attach",
+            "name": "gdb-attach",
+            //"preLaunchTask": "(Debug) Build the kernel and run qemu",
+            "executable": "${workspaceFolder}/vmlinux",
+            "target": ":1234",
+            "remote": true,
+            "cwd": "${workspaceRoot}",
+        },
+          {
+            "name": "kernel custom debug",
+            "type": "cppdbg",
+            "request": "launch",
+            //"preLaunchTask": "${defaultBuildTask}",
+            "program": "${workspaceRoot}/vmlinux",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "targetArchitecture": "x64",
+            "logging": {
+              "trace": true,
+              "traceResponse": true,
+              "engineLogging": true
+            },          
+            "customLaunchSetupCommands": [
+              {
+                  "text": "add-symbol-file vmlinux"
+              },
+              {
+                  "text": "add-symbol-file vmlinux -o -0xffff7fffc7e00000"
+              },
+              {
+                  "text": "b _text"
+              },
+              {
+                  "text": "target remote :1234"
+              },
+          ],
+        },
+        {
+          "name": "kernel-debug-1",
+          "type": "cppdbg",
+          "request": "launch",
+          "program": "${workspaceRoot}/vmlinux",
+          "miDebuggerServerAddress": "localhost:1234",
+          "preLaunchTask": "vm",
+          "args": [],
+          "stopAtEntry": false,
+          "cwd": "${workspaceFolder}",
+          "environment": [],
+          "externalConsole": false,
+          "MIMode": "gdb",
+          "logging": {
+            "trace": true,
+            "traceResponse": true,
+            "engineLogging": true
+          },           
+        },
+          {
+            "name": "kernel-debug",
+            "type": "cppdbg",
+            "launchCompleteCommand": "None",
+            "request": "launch",
+            "preLaunchTask": "vm",
+            //"preLaunchTask": "${defaultBuildTask}",
+            "program": "${workspaceRoot}/vmlinux",
+            "miDebuggerServerAddress": "127.0.0.1:1234",
+            "remote": true,
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "targetArchitecture": "x86_64",
+            "logging": {
+              //"trace": true,
+              //"traceResponse": true,
+              "engineLogging": true
+            },           
+            "setupCommands": [
+              {
+                "description": "Hardware breakpoint at start",
+                "text": "-break-insert -h -f start_kernel", // specify your entry point label
+                "ignoreFailures": true
+              },
+              {
+                "text": "set arch i386:x86-64:intel",
+                "ignoreFailures": false
+              },
+              {
+                "text": "dir .",
+                "ignoreFailures": false
+              },
+              {
+                "text": "add-auto-load-safe-path ./",
+                "ignoreFailures": true
+              },
+              {
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+              },
+            ]
+          }
+        ]
+      }
