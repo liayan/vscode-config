@@ -1,0 +1,16 @@
+{
+	"files.associations": {
+		"*.rmd": "markdown",
+		"*.mak": "makefile",
+		"*.c.inc": "c",
+		"*.h.inc": "c",
+		"*.json": "python",
+		"*.rst.inc": "restructuredtext",
+		"*.vert": "glsl",
+		"*.frag": "glsl",
+		"*.def": "c",
+		"*.inc": "c",
+		"bitset": "c"
+	},
+	"git.ignoreLimitWarning": true
+}
